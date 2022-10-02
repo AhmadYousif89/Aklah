@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/main.ts" defer></script>
+    <title>Aklah - Meals and recipes</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Start Header -->
+      <header class="header">
+        <div class="header__logo">
+          <img src="/favicon.svg" alt="Logo" />
+          <span>AKLAH</span>
+        </div>
+        <form class="search">
+          <input
+            type="text"
+            class="search__input"
+            placeholder="Search over 1,000,000 recipes..."
+          />
+          <button class="btn search__btn">
+            <svg class="search__icon">
+              <use href="src/assets/icons.svg#icon-search"></use>
+            </svg>
+            <span>Search</span>
+          </button>
+        </form>
+
+        <!-- Start Nav -->
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <button class="nav__btn nav__btn--add-recipe">
+                <svg class="nav__icon">
+                  <use href="src/assets/icons.svg#icon-add-recipe"></use>
+                </svg>
+                <span>Add recipe</span>
+              </button>
+            </li>
+            <li class="nav__item">
+              <button class="nav__btn nav__btn--bookmarks">
+                <svg class="nav__icon">
+                  <use href="src/assets/icons.svg#icon-bookmarks"></use>
+                </svg>
+                <span>Bookmarks</span>
+              </button>
+              <div class="bookmarks">
+                <ul class="bookmarks__list"></ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <!-- End Nav -->
+      </header>
+      <!-- End Header -->
+
+      <!-- Start Search View -->
+      <div class="search-results">
+        <ul class="results"></ul>
+        <div class="pagination"></div>
+        <p class="copyright">
+          &copy; Copyright by
+          <a class="twitter-link" target="_blank" href="#">Ahmad Yousif</a> 2022
+        </p>
+      </div>
+      <!-- End Search View -->
+
+      <!-- Start Recipe View -->
+      <div class="recipe"></div>
+      <!-- End Recipe View -->
+    </div>
+    <!-- End Search View -->
+
+    <!-- Start Modal -->
+    <div class="overlay hidden"></div>
+
+    <div class="add-recipe-modal hidden">
+      <button class="btn--close-modal">&times;</button>
+      <form class="upload">
+        <div class="upload__column">
+          <h3 class="upload__heading">Recipe info</h3>
+          <label>Title</label>
+          <input required name="title" type="text" placeholder="Recipe Title" />
+          <label>URL</label>
+          <input
+            required
+            name="sourceUrl"
+            type="text"
+            placeholder="Recipe URL"
+          />
+          <label>Image URL</label>
+          <input
+            required
+            name="imageUrl"
+            type="text"
+            placeholder="Recipe Image URL"
+          />
+          <label>Publisher</label>
+          <input
+            required
+            name="publisher"
+            type="text"
+            placeholder="Recipe Publisher"
+          />
+          <label>Prep time</label>
+          <input
+            required
+            name="cookingTime"
+            type="number"
+            placeholder="Prepration time"
+          />
+          <label>Servings</label>
+          <input
+            required
+            name="servings"
+            type="number"
+            placeholder="Number Of Servings"
+          />
+        </div>
+
+        <div class="upload__column">
+          <h3 class="upload__heading">Ingredients</h3>
+          <label>Ingredient 1</label>
+          <input
+            type="text"
+            required
+            name="ingredient-1"
+            placeholder="Format: 'Quantity,Unit,Description"
+          />
+          <label>Ingredient 2</label>
+          <input
+            type="text"
+            name="ingredient-2"
+            placeholder="Format: 'Quantity,Unit,Description"
+          />
+          <label>Ingredient 3</label>
+          <input
+            type="text"
+            name="ingredient-3"
+            placeholder="Format: 'Quantity,Unit,Description"
+          />
+          <label>Ingredient 4</label>
+          <input
+            type="text"
+            name="ingredient-4"
+            placeholder="Format: 'Quantity,Unit,Description"
+          />
+          <label>Ingredient 5</label>
+          <input
+            type="text"
+            name="ingredient-5"
+            placeholder="Format: 'Quantity,Unit,Description"
+          />
+          <label>Ingredient 6</label>
+          <input
+            type="text"
+            name="ingredient-6"
+            placeholder="Format: 'Quantity,Unit,Description"
+          />
+        </div>
+
+        <button class="btn upload__btn">
+          <svg>
+            <use href="src/assets/icons.svg#icon-upload"></use>
+          </svg>
+          <span>Upload</span>
+        </button>
+      </form>
+    </div>
+    <!-- End Modal -->
+  </body>
+</html>

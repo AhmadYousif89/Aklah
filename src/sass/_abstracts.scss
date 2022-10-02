@@ -1,0 +1,30 @@
+$color-primary: #5595ce;
+$color-primary-2: #cb89fb;
+$color-primary-3: #e73e3e;
+
+$color-grey-l-1: #f9f5f3; // Light background
+$color-grey-l-2: #f2efee; // Light lines
+$color-grey-l-3: #9b5d49; // Light text (placeholder)
+$color-grey-d-1: #777777; // Normal text
+$color-grey-d-2: #9d908c; // Lighter text
+
+$color-valid: #74d48e; // Valid input
+$color-invalid: #c74b6c; // Invalid input
+
+$gradient: linear-gradient(
+  to right top,
+  #f47f7f,
+  #c777ae,
+  #ba83ca,
+  #aa8fd8,
+  #9a9ae1,
+  #8aa7ec,
+  #8cbaef
+);
+$gradient-2: linear-gradient(to right top, #93595996, #b57d3d8e);
+$gradient-3: linear-gradient(to right, #c4f3f3, #a0bef8);
+
+$mq-large: 78.15em; // 1250px
+$mq-medium: 61.25em; // 980px
+$mq-small: 37.5em; // 600px
+$mq-smallest: 31.25em; // 500px

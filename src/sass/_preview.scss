@@ -1,0 +1,106 @@
+.preview {
+  padding: 0 1rem 0.5rem;
+
+  &__link {
+    &:link,
+    &:visited {
+      display: flex;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    &:hover {
+      background-image: $gradient-3;
+      color: #fff;
+    }
+
+    &--active {
+      background-image: $gradient-3;
+      color: #fff;
+    }
+  }
+
+  &__fig {
+    flex: 0 0 5.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+    height: 5.8rem;
+    margin-right: 2rem;
+    position: relative;
+    backface-visibility: hidden;
+
+    &::before {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: $gradient-2;
+      opacity: 0.4;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.3s;
+    }
+  }
+
+  &__data {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 2rem;
+    row-gap: 0.1rem;
+    align-items: center;
+  }
+
+  &__title {
+    grid-column: 1/-1;
+    font-size: 1.5rem;
+    color: $color-primary;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    // This is how text is truncated!
+    text-overflow: ellipsis;
+    max-width: 24rem;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__publisher {
+    font-size: 1.15rem;
+    color: $color-grey-d-1;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  &__user-generated {
+    background-color: darken($color-grey-l-2, 5%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 10rem;
+
+    svg {
+      height: 1.5rem;
+      width: 1.5rem;
+      fill: $color-primary;
+    }
+  }
+}
+
+.preview {
+  &__link.active {
+    background-image: $gradient-3;
+  }
+}

@@ -7,7 +7,7 @@ export default class MainView {
   protected msg = `Start searching for your favourit recipe.</br> Have fun!`;
   protected errorMsg = `No recipes were found for your query. Please try again!`;
 
-  constructor(parentSelector: string) {
+  constructor(parentSelector?: string) {
     this.parentContainer = document.querySelector(
       parentSelector as string
     ) as HTMLElement;

@@ -2,10 +2,10 @@ import icons from '../assets/icons.svg';
 import { Recipe } from './../types';
 
 export default class MainView {
-  protected parentContainer: HTMLElement;
   protected data!: Recipe | Recipe[];
-  protected errorMsg = `No recipes were found for your query. Please try again!`;
+  protected parentContainer: HTMLElement;
   protected msg = `Start searching for your favourit recipe.</br> Have fun!`;
+  protected errorMsg = `No recipes were found for your query. Please try again!`;
 
   constructor(parentSelector: string) {
     this.parentContainer = document.querySelector(
@@ -13,10 +13,16 @@ export default class MainView {
     ) as HTMLElement;
   }
 
-  render(data?: () => Recipe | Recipe[]) {
+  protected renderMarkup(_data?: any) {}
+
+  render(data?: () => Recipe | Recipe[], shouldInsert = true) {
     if (data) this.data = data() as Recipe | Recipe[];
     this.clear();
-    this.parentContainer.insertAdjacentHTML('afterbegin', this.renderMarkup());
+    if (!shouldInsert) return this.renderMarkup();
+    this.parentContainer.insertAdjacentHTML(
+      'afterbegin',
+      this.renderMarkup() as any
+    );
   }
 
   // OPTIONAL method to update the DOM partially
@@ -24,11 +30,14 @@ export default class MainView {
   renderPartially(data?: () => Recipe | Recipe[] | void) {
     if (data) this.data = data() as Recipe | Recipe[];
     this.clear();
-    this.parentContainer.insertAdjacentHTML('afterbegin', this.renderMarkup());
+    this.parentContainer.insertAdjacentHTML(
+      'afterbegin',
+      this.renderMarkup() as any
+    );
 
     const newDom = document
       .createRange()
-      .createContextualFragment(this.renderMarkup());
+      .createContextualFragment(this.renderMarkup() as any);
     const newDomElements = [...newDom.querySelectorAll('*')];
     const curDomElements = [...this.parentContainer.querySelectorAll('*')];
 
@@ -90,10 +99,6 @@ export default class MainView {
       </div>
     `;
     this.parentContainer.insertAdjacentHTML('afterbegin', content);
-  }
-
-  renderMarkup(data?: any) {
-    return data;
   }
 
   clear() {

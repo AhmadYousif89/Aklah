@@ -4,4 +4,4 @@ export * from './search.view';
 export * from './bookmark.view';
 export * from './previews.view';
 export * from './pagination.view';
-export * from './add-recipe-modal.view';
+export * from './add-recipe.view';

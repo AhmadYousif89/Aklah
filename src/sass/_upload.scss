@@ -7,7 +7,7 @@
   background-color: white;
   border-radius: 9px;
 
-  padding: 5rem 6rem;
+  padding: 3rem 4rem;
   box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.25);
   z-index: 1000;
   transition: all 0.5s;
@@ -38,7 +38,7 @@
 }
 
 .upload {
-  gap: 4rem 6rem;
+  gap: 4rem;
   display: flex;
   flex-wrap: wrap;
   max-width: 76rem;
@@ -66,10 +66,6 @@
       &::placeholder {
         color: $color-grey-l-3;
         font-size: 1.25rem;
-      }
-
-      &:focus {
-        outline: none;
       }
 
       &:valid:not(:placeholder-shown) {

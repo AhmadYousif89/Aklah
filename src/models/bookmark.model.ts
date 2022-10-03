@@ -1,5 +1,5 @@
 import { state } from '../state';
-import { Recipe } from '../types';
+import { Ingredient, Recipe } from '../types';
 
 export const addBookmark = (recipe: Recipe) => {
   if (state.bookmarks.some((b) => b.id === recipe.id)) return;
@@ -19,16 +19,20 @@ export const updateBookmarkServings = (recipe: Recipe) => {
   const bookedRecipe = state.bookmarks.find((b) => b.id === recipe.id);
 
   if (bookedRecipe) {
-    bookedRecipe.ingredients?.forEach((ing) => {
-      const oldServings = bookedRecipe.servings as number;
-      ing.quantity =
-        ((ing.quantity as number) * (recipe.servings as number)) / oldServings;
-    });
     const updatedBookmarks = [...state.bookmarks];
     const updatedBookmark = { ...bookedRecipe, servings: recipe.servings };
-    updatedBookmarks[bookedRecipeIdx] = updatedBookmark;
+    const updatedBookmarkIngs = updatedBookmark.ingredients as Ingredient[];
 
+    updatedBookmarkIngs.forEach((ing) => {
+      const oldServings = bookedRecipe.servings as number;
+      if (ing.quantity != null)
+        ing.quantity =
+          ((ing.quantity as number) * (recipe.servings as number)) /
+          oldServings;
+    });
+
+    updatedBookmarks[bookedRecipeIdx] = updatedBookmark;
     state.bookmarks = updatedBookmarks;
-  } else return;
-  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+    localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+  }
 };

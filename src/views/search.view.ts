@@ -1,10 +1,9 @@
 import MainView from './main.view';
 import { Recipe } from '../types';
-import { Preview } from './previews.view';
+import { PreviewView as Preview } from '../views';
 
 class SearchView extends MainView {
-  data: Recipe[] = [];
-
+  protected data: Recipe[] = [];
   private searchForm = document.querySelector('.search') as HTMLFormElement;
   private searchInput = this.searchForm.querySelector(
     '.search__input'
@@ -22,9 +21,10 @@ class SearchView extends MainView {
     });
   }
 
-  renderMarkup() {
-    const searchList = Preview.renderMarkup(this.data);
-    return searchList;
+  protected renderMarkup() {
+    return this.data
+      .map((recipe) => new Preview('.search-results ul').renderMarkup(recipe))
+      .join('');
   }
 }
 

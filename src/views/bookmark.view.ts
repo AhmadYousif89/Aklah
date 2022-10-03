@@ -1,22 +1,23 @@
 import { Recipe } from '../types';
 import MainView from './main.view';
-import { Preview } from './previews.view';
+import { PreviewView as Preview } from '../views';
 
 class BookmarkView extends MainView {
-  data: Recipe[] = [];
-  msg = 'No bookmarks yet. Find a nice recipe and bookmark it :)';
+  protected data: Recipe[] = [];
+  protected msg = 'No bookmarks yet. Find a nice recipe and bookmark it :)';
 
   constructor() {
-    super('.bookmarks .bookmarks__list');
+    super('.bookmarks__list');
   }
 
   viewHandler(handler: () => void) {
     window.addEventListener('load', handler);
   }
 
-  renderMarkup() {
-    const bookmarkList = Preview.renderMarkup(this.data);
-    return bookmarkList;
+  protected renderMarkup() {
+    return this.data
+      .map((recipe) => new Preview('.bookmarks__list').renderMarkup(recipe))
+      .join('');
   }
 }
 

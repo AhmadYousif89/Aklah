@@ -5,6 +5,16 @@ import { API_Recipe } from '../types';
 import { state } from '../state';
 import { renderBookmarks } from './';
 
+const ctrlModalTimeout = () => {
+  setTimeout(() => {
+    RecipeModal.closeModal();
+  }, MODAL_TIMEOUT * 1000);
+
+  setTimeout(() => {
+    RecipeModal.render(() => [], false);
+  }, MODAL_TIMEOUT * 1500);
+};
+
 const ctrlRecipeUpload = async (newRecipe: API_Recipe) => {
   try {
     RecipeModal.renderSpinner();
@@ -15,15 +25,12 @@ const ctrlRecipeUpload = async (newRecipe: API_Recipe) => {
 
     window.history.pushState(null, '', `#${state.recipe.id}`);
 
-    setTimeout(() => {
-      RecipeModal.toggleModal();
-      RecipeModal.render();
-    }, MODAL_TIMEOUT * 1000);
-
+    ctrlModalTimeout();
     renderBookmarks();
     Recipes.render(() => state.recipe);
   } catch (err) {
     RecipeModal.renderError({ msg: (err as Error).message });
+    ctrlModalTimeout();
   }
 };
 

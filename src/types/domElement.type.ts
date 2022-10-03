@@ -6,8 +6,8 @@ export type InsertElemPos =
 
 export type DOMElement = {
   tag: string;
-  innerHtml?: string;
-  cssClassies?: [string];
-  attributes?: [{ name: string; value: string }];
-  insertOptions?: { parentElemSelector: string; insertElem: InsertElemPos };
+  classNames?: string[];
+  parentSelector?: string;
+  insertElem?: InsertElemPos;
+  attributes?: { name: string; value: string }[];
 };

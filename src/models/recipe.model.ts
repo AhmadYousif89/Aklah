@@ -14,7 +14,8 @@ const createRecipeObj = (data: API_Recipe) => {
     ingredients: data.ingredients,
     publisher: data.publisher,
     servings: data.servings,
-    ...(data.key && { key: data.key }),
+    key: data.key,
+    // ...(data.key && { key: data.key }),
   };
 };
 
@@ -27,8 +28,7 @@ export const getRecipe = async () => {
 
     if (receivedRecipe.key === API_KEY) {
       addBookmark(createRecipeObj(receivedRecipe));
-      state.recipe = state.bookmarks.at(-1) as Recipe;
-      state.recipe.bookmarked = true;
+      state.recipe = state.bookmarks.find((b) => b.id === id) as Recipe;
       return state.recipe;
     }
 
@@ -73,13 +73,13 @@ export const uploadRecipe = async (newRecipe: any) => {
       ingredients,
     };
 
-    const data = (await httpRequest(`?key=${API_KEY}`, {
+    const data = await httpRequest(`?key=${API_KEY}`, {
       method: 'POST',
       headers: { 'Content-type': 'Application/json' },
       body: JSON.stringify(recipe),
-    })) as API_Recipe;
+    });
 
-    state.recipe = createRecipeObj(data);
+    state.recipe = createRecipeObj(data as API_Recipe);
     addBookmark(state.recipe);
     return state.recipe;
   } catch (error) {
@@ -89,8 +89,8 @@ export const uploadRecipe = async (newRecipe: any) => {
 
 export const updateRecipeServings = (newServings: number) => {
   state.recipe.ingredients?.forEach((ing) => {
-    const oldServings = state.recipe.servings as number;
-    ing.quantity = ((ing.quantity as number) * newServings) / oldServings;
+    const servings = state.recipe.servings as number;
+    ing.quantity = ((ing.quantity as number) * newServings) / servings;
   });
   state.recipe.servings = newServings;
 };

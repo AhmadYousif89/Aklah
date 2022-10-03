@@ -5,7 +5,7 @@ import { Ingredient, Recipe } from '../types';
 import MainView from './main.view';
 
 class RecipeView extends MainView {
-  data: Recipe = {};
+  protected data: Recipe = {};
 
   constructor() {
     super('.recipe');
@@ -41,7 +41,7 @@ class RecipeView extends MainView {
     };
   }
 
-  renderMarkup() {
+  protected renderMarkup() {
     const {
       key,
       title,

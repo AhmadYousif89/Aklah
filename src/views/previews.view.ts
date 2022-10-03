@@ -1,18 +1,26 @@
 import icons from '../assets/icons.svg';
+import { createHtmlElement } from '../helpers';
 import { Recipe } from '../types';
+import MainView from './main.view';
 
-class PreviewView {
-  renderMarkup(data: Recipe[]) {
-    return data.map(this.generatePreviewMarkup).join('');
-  }
-
-  private generatePreviewMarkup(recipe: Recipe) {
+export class PreviewView extends MainView {
+  renderMarkup(recipe: Recipe) {
     const recipeId = window.location.hash.slice(1);
-    const actvClass = recipe.id === recipeId ? 'preview__link--active' : '';
+    const actvClass = recipe.id === recipeId ? 'preview__link--active' : null;
 
-    return `
-      <li class="preview">
-        <a class="preview__link ${actvClass}" href="#${recipe.id}">
+    const list = createHtmlElement({
+      tag: 'li',
+      classNames: ['preview'],
+    });
+
+    const preview = createHtmlElement({
+      tag: 'a',
+      parentSelector: '.preview',
+      classNames: ['preview__link', `${actvClass}`],
+      attributes: [{ name: 'href', value: `#${recipe.id}` }],
+    });
+
+    const content = `
           <figure class="preview__fig">
             <img src="${recipe.imageUrl}" alt="Test" />
           </figure>
@@ -24,11 +32,10 @@ class PreviewView {
                 <use href="${icons}#icon-user"></use>
               </svg>
             </div>
-          </div>
-        </a>
-      </li>
-    `;
+          </div> `;
+
+    if (preview) preview.elem.innerHTML = content;
+    list?.elem.append(preview?.elem as HTMLElement);
+    this.parentContainer.append(list?.elem as HTMLElement);
   }
 }
-
-export const Preview = new PreviewView();

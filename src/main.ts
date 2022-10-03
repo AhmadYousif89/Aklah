@@ -1,10 +1,10 @@
 import './sass/main.scss';
 
 import {
-  renderBookmarks,
   renderRecipe,
-  renderRecipesByPages,
+  renderBookmarks,
   renderSearchResult,
+  renderRecipesByPages,
 } from './controllers';
 import { Pagination, Search, Recipes, Bookmarks } from './views';
 

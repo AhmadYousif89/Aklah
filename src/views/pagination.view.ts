@@ -3,9 +3,9 @@ import MainView from './main.view';
 import { state } from '../state';
 
 class PaginationView extends MainView {
-  constructor() {
-    super('.pagination');
-  }
+  protected parentContainer = document.querySelector(
+    '.pagination'
+  ) as HTMLElement;
 
   viewHandler(handler: (goToPageNum: number) => void) {
     this.parentContainer.addEventListener('click', (e) => {
